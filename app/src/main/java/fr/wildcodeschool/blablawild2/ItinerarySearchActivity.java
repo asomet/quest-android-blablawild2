@@ -40,8 +40,8 @@ public class ItinerarySearchActivity extends AppCompatActivity {
                 if (departure.isEmpty() || destination.isEmpty() || date.isEmpty()) {
                     Toast.makeText(ItinerarySearchActivity.this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(ItinerarySearchActivity.this, ItineraryListActivity.class);
-                    TripModel tripModel = new TripModel(departure, destination, date);
+                    final Intent intent = new Intent(ItinerarySearchActivity.this, ItineraryListActivity.class);
+                    final TripModel tripModel = new TripModel(departure, destination, date);
 
                     intent.putExtra(EXTRA_TRIP, tripModel);
                     startActivity(intent);
@@ -53,7 +53,7 @@ public class ItinerarySearchActivity extends AppCompatActivity {
                     itineraryRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Intent intent = new Intent(ItinerarySearchActivity.this, MainActivity.class);
+                            intent.putExtra(EXTRA_TRIP, tripModel);
                             startActivity(intent);
                         }
 
